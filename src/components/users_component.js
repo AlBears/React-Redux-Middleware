@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 class UserList extends Component {
   renderUser(user) {
@@ -10,6 +11,10 @@ class UserList extends Component {
         <a className = "btn btn-primary">Email</a>
       </div>
     )
+  }
+
+  componentWillMount() {
+    this.props.fetchUsers();
   }
 
   render() {
@@ -26,4 +31,4 @@ function mapStateToProps(state) {
   return { users: state.users };
 }
 
-export default connect(mapStateToProps)(UserList);
+export default connect(mapStateToProps, actions)(UserList);
